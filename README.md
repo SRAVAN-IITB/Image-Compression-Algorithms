@@ -18,18 +18,43 @@ This repository contains two projects related to image compression techniques:
 ## Features
 
 ### 1. JPEG Compression Engine
+  ![Workflow Diagram](diagrams/workflow-1.png)
 - **Techniques Used**:
   - **Discrete Cosine Transform (DCT)**: Converts image data from spatial to frequency domain.
+
+$$ C(u, v) = \frac{1}{\sqrt{2N}} \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} I(x, y) \cos \left( \frac{\pi(2x+1)u}{2N} \right) \cos \left( \frac{\pi(2y+1)v}{2N} \right) $$
+
+    where:
+    - $I(x, y)$ represents the intensity value of the pixel at position $(x, y)$ in the image block.
+    - $C(u, v)$ is the DCT coefficient at position $(u, v)$ in the frequency domain.
+    - $N$ is the size of the block ($N=8$ in JPEG compression).
+    - The $u$ and $v$ indices correspond to frequencies in the horizontal and vertical directions, respectively.
+
   - **Quantization**: Reduces precision for compression.
+    
+$$ Q(u, v) = \text{round}\left(\frac{C(u, v)}{Q_{\text{table}}(u, v)}\right) $$
+    
+    where $C(u, v)$ represents the DCT coefficient at position $(u, v)$, $Q_{\text{table}}(u, v)$ is the corresponding value in the quantization matrix, and $Q(u, v)$ is the quantized coefficient.
+
   - **Huffman Encoding**: Entropy coding for efficient data representation.
-  ![Workflow Diagram](path/to/sample_graph.png)
+  ![Workflow Diagram](diagrams/Huffman-algo.png)
 - **Objectives**:
   - Implement core JPEG compression steps for grayscale images.
   - Evaluate compression with metrics such as **Bits Per Pixel (BPP)** and **Root Mean Squared Error (RMSE)**.
   - Simulate varying quality factors and plot **RMSE vs. BPP** curves.
 - **Sample Results**:
-  ![RMSE vs BPP Curve](path/to/sample_graph.png)
-  ![Sample Compression](path/to/compressed_images.png)
+  ![RMSE vs BPP Curve](diagrams/plot_RMSE-BPP.png)
+  ![Sample Compression](diagrams/compressions.png)
+  
+| **Quality Factor** | **File Size (bytes)** | **Compression Rate** | **Compression Ratio** |
+|--------------------|-----------------------|----------------------|-----------------------|
+| Original           | 186368                | -                    | -                     |
+| 10                 | 3116.50               | 59.80                | 0.017                 |
+| 40                 | 3932.88               | 47.39                | 0.021                 |
+| 80                 | 4967.62               | 37.52                | 0.027                 |
+
+*Table 1: File Size, Compression Rate, and Compression Ratio at different Quality Factors*
+
 
 ### 2. Edge-Based Image Compression
 - **Stages**:
@@ -37,11 +62,10 @@ This repository contains two projects related to image compression techniques:
   - **Subsampling**: Reduces redundant data storage near edges.
   - **Supersampling**: Improves reconstruction near edges.
   - **Reconstruction**: Uses homogeneous diffusion to fill missing data.
-- **Sample Workflow**:
-  ![Workflow Diagram](path/to/flowchart.png)
 - **Sample Results**:
-  ![Edge-Based Compression](path/to/edge_compression_results.png)
-
+  ![Edge-Based Compression](diagrams/penguin.png)
+  ![Divergence vs Diffusion Time Plot](diagrams/plot_div-difftime.png)
+  
 ---
 
 ## Installation and Usage
@@ -94,6 +118,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-### Notes
-- Replace `path/to/sample_graph.png`, `path/to/compressed_images.png`, and `path/to/flowchart.png` with actual paths to images or screenshots from your project.
-- Add any additional results or insights if available.
