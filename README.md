@@ -24,17 +24,22 @@ This repository contains two projects related to image compression techniques:
 
 $$ C(u, v) = \frac{1}{\sqrt{2N}} \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} I(x, y) \cos \left( \frac{\pi(2x+1)u}{2N} \right) \cos \left( \frac{\pi(2y+1)v}{2N} \right) $$
 
-    where:
-    - $I(x, y)$ represents the intensity value of the pixel at position $(x, y)$ in the image block.
-    - $C(u, v)$ is the DCT coefficient at position $(u, v)$ in the frequency domain.
-    - $N$ is the size of the block ($N=8$ in JPEG compression).
-    - The $u$ and $v$ indices correspond to frequencies in the horizontal and vertical directions, respectively.
+where:
+- $I(x, y)$ represents the intensity value of the pixel at position $(x, y)$ in the image block.
+- $C(u, v)$ is the DCT coefficient at position $(u, v)$ in the frequency domain.
+- $N$ is the size of the block ($N=8$ in JPEG compression).
+- The $u$ and $v$ indices correspond to frequencies in the horizontal and vertical directions, respectively.
+
 
   - **Quantization**: Reduces precision for compression.
     
 $$ Q(u, v) = \text{round}\left(\frac{C(u, v)}{Q_{\text{table}}(u, v)}\right) $$
-    
-    where $C(u, v)$ represents the DCT coefficient at position $(u, v)$, $Q_{\text{table}}(u, v)$ is the corresponding value in the quantization matrix, and $Q(u, v)$ is the quantized coefficient.
+
+where:
+- $C(u, v)$ represents the DCT coefficient at position $(u, v)$,
+- $Q_{\text{table}}(u, v)$ is the corresponding value in the quantization matrix,
+- $Q(u, v)$ is the quantized coefficient.
+
 
   - **Huffman Encoding**: Entropy coding for efficient data representation.
   ![Workflow Diagram](diagrams/Huffman-algo.png)
