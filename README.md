@@ -62,8 +62,8 @@ $$ Q(u, v) = \text{round}\left(\frac{C(u, v)}{Q_{\text{table}}(u, v)}\right) $$
   - **Subsampling**: Reduces redundant data storage near edges.
   - **Supersampling**: Improves reconstruction near edges.
   - **Reconstruction**: Uses homogeneous diffusion to fill missing data.
-- **Sample Results**:
-  ![Edge-Based Compression](diagrams/penguin.png)
+- **Sample Results**:  
+  ![Edge-Based Compression](diagrams/penguin.png)  
   ![Divergence vs Diffusion Time Plot](diagrams/plot_div-difftime.png)
   
 ---
@@ -87,8 +87,8 @@ pip install numpy opencv-python scipy matplotlib jupyterlab
 ### Execution
 Clone the repository:
 ```bash
-git clone https://github.com/username/repo-name.git
-cd repo-name
+git clone https://github.com/SRAVAN-IITB/Image-Compression-Algorithms.git
+cd Image-Compression-Algorithms
 ```
 
 Run the notebooks:
